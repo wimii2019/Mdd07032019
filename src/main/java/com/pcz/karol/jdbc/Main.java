@@ -21,6 +21,9 @@ public class Main {
 
                 pokazSemestry(statement);
                 pokazPrzedmioty(statement);
+                aktualizuj(connection);
+                pokazSemestry(statement);
+                pokazPrzedmioty(statement);
             }
             catch(SQLException e)
             {
@@ -85,6 +88,10 @@ public class Main {
         statement.executeUpdate("insert into przedmiot values(3, 'Hurtownie danych', 9, 18,3)");
     }
 
-
-
+    private static void aktualizuj(Connection connection) throws SQLException {
+        PreparedStatement pstmt = connection.prepareStatement("UPDATE przedmiot SET lGodzinLabolatoryjnych = ? WHERE numer = ?;");
+            pstmt.setInt(1, 100);
+            pstmt.setInt(2, 1);
+            pstmt.executeUpdate();
+    }
 }
